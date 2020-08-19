@@ -1,0 +1,22 @@
+GET localhost:8080/user/abc
+
+
+###
+
+
+GET localhost:8080/user
+
+###
+
+POST localhost:8080/user/post
+Content-Type: application/json
+
+
+{
+  "id": 123123,
+  "firstName": "Torben",
+  "lastName": "Steinmoel",
+  "email": "torben@gmail.com"
+}
+
+###
