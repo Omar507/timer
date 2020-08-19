@@ -2,13 +2,16 @@ package com.example.demo.models;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
 
 @Entity
 public class User {
 
-    private int id;
+    @Id
+    @GeneratedValue
+    private Long id;
 
     private String firstName;
 
@@ -16,11 +19,11 @@ public class User {
 
     private String email;
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

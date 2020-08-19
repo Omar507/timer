@@ -1,11 +1,20 @@
 package com.example.demo.rest;
 
 import com.example.demo.models.User;
+import com.example.demo.repository.UserRepository;
+import com.example.demo.service.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/user")
 public class UserController {
+
+
+    @Autowired
+    private UserService userService;
 
     @GetMapping("/{id}")
     public String getUser(@PathVariable int id){
@@ -13,20 +22,15 @@ public class UserController {
     }
 
     @GetMapping()
-    public User getRandomUser(){
-        User user = new User();
-        user.setEmail("omar@gmail.com");
-        user.setFirstName("omar");
-        user.setLastName("sukva");
-        user.setId(123123);
-        return user;
+    public List<User> getAllUsers(){
+        List<User> users = userService.findAll();
+        return users;
     }
 
     @PostMapping("/post")
     public String postUserInfo(@RequestBody User user){
-        System.out.println("User name is: " + user.getFirstName());
-        System.out.println("User last is: " + user.getLastName());
-        System.out.println("User email is: " + user.getEmail());
+        System.out.println("Posting user with name: " + user.getFirstName());
+        userService.save(user);
         return "nice";
     }
 }
